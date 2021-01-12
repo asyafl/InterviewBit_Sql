@@ -1,0 +1,6 @@
+SELECT concat(D.director_first_name,D.director_last_name) as director_name, M.movie_title as movie_title
+FROM movies as M
+INNER JOIN movies_directors as MD ON MD.movie_id = M.movie_id
+INNER JOIN movies_cast as MC ON MC.movie_id = M.movie_id
+INNER JOIN directors as D ON D.director_id = MD.director_id
+WHERE MC.role LIKE 'SeanMaguire'
