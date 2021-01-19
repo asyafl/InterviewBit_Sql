@@ -1,0 +1,13 @@
+Select 
+M.movie_title as movie_title,
+M.movie_year as movie_year, 
+Concat(D.director_first_name,D.director_last_name) as director_name,
+Concat(A.actor_first_name,A.actor_last_name) as actor_name,
+MC.role as role
+
+from movies as M
+Inner join movies_directors as MD ON  MD.movie_id = M.movie_id
+Inner join movies_cast as MC ON MC.movie_id = M.movie_id
+Inner join actors as A on A.actor_id = MC.actor_id
+Inner join directors as D on D.director_id = MD.director_id
+where M.movie_time = (Select MIN(movie_time) from movies)
