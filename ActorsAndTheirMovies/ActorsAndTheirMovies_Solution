@@ -1,0 +1,9 @@
+Select M.movie_title
+From movies_cast as MC
+Inner join actors as A on A.actor_id = MC.actor_id
+Inner join movies as M on M.movie_id = M_cast.movie_id
+Where MC.actor_id in
+    (Select actor_id 
+     From movies_cast 
+     Group by actor_id 
+     Having count(movie_id)>=2)
